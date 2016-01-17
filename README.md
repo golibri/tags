@@ -3,6 +3,8 @@
 # golibri/tags
 Calculate relevant tags (aka keywords) from text string
 
+**work in progress**
+
 # installation
 `go get github.com/golibri/tags`
 
