@@ -6,11 +6,20 @@ Calculate relevant tags (aka keywords) from text string
 **work in progress**
 
 # installation
+`go get github.com/dchest/stemmer/german`
+
+`go get github.com/dchest/stemmer/porter2`
+
+`go get github.com/bbalet/stopwords`
+
 `go get github.com/golibri/tags`
 
 # usage
 ````go
-list := tags.Calculate("big-text-string")
+result := tags.Calculate("big-text-string", "en")
+tags := result.Words
+stems := result.Stems
+dict := result.Dictionary // lookup stem -> words
 ````
 
 # license

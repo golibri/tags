@@ -1,24 +1,23 @@
-// Determine relevant Tags (aka Keywords) from a given text string
 package tags
 
 import (
-	"github.com/endeveit/guesslanguage"
+	"github.com/bbalet/stopwords"
 )
 
-func Calculate(str string) []string {
-	lang := detectLanguage(str)
-	t := NewCorpus(str, lang)
-	return t
+// Result holds a data structure with all relevant metadata of the calculation
+type Result struct {
+	Words      []string
+	Stems      []string
+	Dictionary map[string][]string // stem -> [words]
 }
 
-// stemmer are only available for german and english currently
-func detectLanguage(str string) string {
-	lang, err := guesslanguage.Guess(str)
-	if err != nil {
-		return "en"
-	}
-	if lang == "de" {
-		return "de"
-	}
-	return "en"
+// Calculate takes a text and a language hint, either "en" or "de" for now.
+func Calculate(str string, language string) Result {
+	content := stopwords.CleanString(str, language, true)
+	t := newText(content, language)
+	r := Result{}
+	r.Words = t.Words
+	r.Stems = t.Stems
+	r.Dictionary = t.Dictionary
+	return r
 }
