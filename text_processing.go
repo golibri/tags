@@ -18,9 +18,7 @@ func (t *text) process() *text {
 func (t *text) stemsToWords() *text {
 	list := []string{}
 	for _, words := range t.Dictionary {
-		for _, word := range words {
-			list = append(list, word)
-		}
+		list = append(list, words[0])
 	}
 	t.Words = list
 	return t
