@@ -18,7 +18,9 @@ func (t *text) splitWords() *text {
 	list := strings.Fields(t.Content)
 	index := make(map[string]int)
 	for _, word := range list {
-		index[word] = index[word] + 1
+		if len(word) > 2 {
+			index[word] = index[word] + 1
+		}
 	}
 	t.WordIndex = index
 	return t
